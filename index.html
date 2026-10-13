@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Contacto - Bateria Voadora</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Filtro SVG para o Efeito Boiling Water -->
+  <svg style="display: none;">
+    <defs>
+      <filter id="boil-1">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="1" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="boil-2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="boil-3">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <main class="card boil-effect">
+    <div class="card-topo">
+      <h1 class="boil-effect">Fale Connosco</h1>
+      <button type="button" id="btn-tema" class="btn-tema boil-effect" aria-label="Alternar Tema">🌙 Mudar Tema</button>
+    </div>
+    <p class="subtitulo boil-effect">Campos com * são obrigatórios.</p>
+
+    <form action="#" method="post">
+
+      <div class="campo">
+        <label for="nome" class="boil-effect">Nome *</label>
+        <input type="text" id="nome" name="nome"
+               placeholder="Maria Silva"
+               required minlength="3" autocomplete="name" class="boil-effect">
+        <small class="erro boil-effect">Informe ao menos 3 caracteres.</small>
+      </div>
+
+      <div class="campo">
+        <label for="email" class="boil-effect">E-mail *</label>
+        <input type="email" id="email" name="email"
+               placeholder="maria@exemplo.com"
+               required autocomplete="email" class="boil-effect">
+        <small class="erro boil-effect">Digite um e-mail válido.</small>
+      </div>
+
+      <!-- 1. Campo Telefone com pattern exigido -->
+      <div class="campo">
+        <label for="telefone" class="boil-effect">Telefone *</label>
+        <input type="tel" id="telefone" name="telefone"
+               pattern="\(\d{2}\) \d{4,5}-\d{4}"
+               placeholder="(11) 99999-9999"
+               required class="boil-effect">
+        <small class="erro boil-effect">Formato obrigatório: (00) 00000-0000</small>
+      </div>
+
+      <div class="campo">
+        <label for="senha" class="boil-effect">Palavra-passe *</label>
+        <input type="password" id="senha" name="senha"
+               placeholder="Mínimo 8 caracteres"
+               required minlength="8" autocomplete="new-password" class="boil-effect">
+        <small class="erro boil-effect">A palavra-passe deve ter 8 ou mais caracteres.</small>
+      </div>
+
+      <!-- 2. Campo Confirmar Senha -->
+      <div class="campo">
+        <label for="confirma-senha" class="boil-effect">Confirmar Palavra-passe *</label>
+        <input type="password" id="confirma-senha" name="confirma_senha"
+               placeholder="Repita a palavra-passe"
+               required minlength="8" autocomplete="new-password" class="boil-effect">
+        <small class="erro boil-effect">As palavras-passe devem coincidir.</small>
+      </div>
+
+      <div class="campo">
+        <label for="idade" class="boil-effect">Idade</label>
+        <input type="number" id="idade" name="idade"
+               min="18" max="99" placeholder="18 a 99" class="boil-effect">
+        <small class="erro boil-effect">Informe um valor entre 18 e 99.</small>
+      </div>
+
+      <div class="campo">
+        <label for="assunto" class="boil-effect">Assunto *</label>
+        <select id="assunto" name="assunto" required class="boil-effect">
+          <option value="" disabled selected>Selecione...</option>
+          <option value="duvida">Dúvida</option>
+          <option value="sugestao">Sugestão</option>
+          <option value="suporte">Suporte</option>
+        </select>
+        <small class="erro boil-effect">Escolha um assunto.</small>
+      </div>
+
+      <div class="campo">
+        <label for="mensagem" class="boil-effect">Mensagem *</label>
+        <textarea id="mensagem" name="mensagem" rows="4"
+                  placeholder="Escreva a sua mensagem..."
+                  required minlength="10" maxlength="300" class="boil-effect"></textarea>
+        <small class="erro boil-effect">Escreva ao menos 10 caracteres.</small>
+      </div>
+
+      <!-- Botão de Envio (com suporte a :disabled) -->
+      <button type="submit" class="btn boil-effect">Enviar</button>
+    </form>
+  </main>
+
+  <script>
+    const btnTema = document.getElementById('btn-tema');
+    btnTema.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        btnTema.textContent = '☀️ Modo Claro';
+      } else {
+        btnTema.textContent = '🌙 Mudar Tema';
+      }
+    });
+  </script>
+</body>
+</html>
